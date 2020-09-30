@@ -1,0 +1,3 @@
+[submodule "EssentialTypeScript"]
+	path = EssentialTypeScript
+	url = git@github.com:jchadwick/EssentialTypeScript.git
