@@ -5,6 +5,24 @@
   <title>HPlus Sport</title>
   <link rel="stylesheet" href="css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="../jquery-3.0.0.js"></script>
+	<script>
+		$(() => {
+			const urlParams = new URLSearchParams(window.location.search);
+			const prodID = urlParams.get("prodID");
+			const prodName = urlParams.get("prodName");
+			$("span#productName").text(prodName);
+			$.getJSON('./product-data.json', function (data) {
+						data.products.forEach((elem)=>{
+									if(elem.prod_id == prodID) {
+											$("span#productStock").text(elem.in_stock);
+											$("span#productPrice").text(elem.retail_price);
+											$("span#productDesc").text(elem.description);
+									}
+							})
+			});
+		});
+	</script>
 </head>
 <body>
 

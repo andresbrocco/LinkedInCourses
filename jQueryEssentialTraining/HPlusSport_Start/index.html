@@ -5,6 +5,26 @@
   <title>HPlus Sport</title>
   <link rel="stylesheet" href="css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="../jquery-3.0.0.js"></script>
+	<script>
+		$(function () {
+			$("[id^=checkboxFilter]").change(function (event) {
+				checkbox = event.target;
+				if(checkbox.checked) {
+						$(`h2[data-type=${checkbox.name}]`).parent().show()
+					} else {
+						$(`h2[data-type=${checkbox.name}]`).parent().hide()
+					}
+				});
+
+			$("li.product-item").each(function () {
+				const prodName = encodeURIComponent($(this).children("h2.product-name").text());
+				const prodID = encodeURIComponent($(this).data("prod_id"));
+						const link = $(`<a href='product.html?prodName=${prodName}&prodID=${prodID}'/>`);
+				$(this).children("img").wrap(link);
+				});
+			});
+	</script>
 </head>
 <body>
 
@@ -45,6 +65,17 @@
   <div class="container">
     <h2 class="headline">Products</h2>
     <p>H+ Sport is <em>dedicated to creating</em> eco-friendly, high-quality, nutrient-rich, nutritional products that <em>enhance active lifestyles</em>. We <a href="#guarantee">guarantee</a> it. Take a look at some of our products.</p>
+		<form>
+			<div>
+				<span>Show: </span>
+				<input type="checkbox" id="checkboxFilter" name="vitamin" checked="checked">
+				<label for="checkboxFilter">Vitamins</label>
+				<input type="checkbox" id="checkboxFilter" name="mineralwater" checked="checked">
+				<label for="checkboxFilter">Mineral Water</label>
+				<input type="checkbox" id="checkboxFilter" name="proteinbar" checked="checked">
+				<label for="checkboxFilter">Protein Bars</label>
+			</div>
+		</form>
   </div><!-- container -->
   <ul class="product-list">
     <li class="product-item" data-prod_id="V-A1037">
